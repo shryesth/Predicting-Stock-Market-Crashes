@@ -1,10 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Nov  5 16:38:14 2018
-
-@author: roman
-"""
+import sklearn
 import pickle
 import json
 import numpy as np
@@ -20,7 +14,7 @@ import os
 
 # ---------- load inpputs and models ---------- #
 def main():
-    with open('inputs.json') as f:
+    with open('Predicting-Stock-Market-Crashes\\final_predictor\inputs.json') as f:
         inputs = json.load(f)
     months = inputs['months']
     model_name = inputs['model_name']
@@ -31,7 +25,7 @@ def main():
     n_lookback = inputs['n_days_lookback']
     n_plot = inputs['n_days_plot']
     # ---------- load data ---------- #
-    os.chdir('./data')
+    os.chdir('Predicting-Stock-Market-Crashes\\final_predictor\data')
     data = DataLoader([dataset_original], [dataset_name])
     dataset_revised, crashes = data.get_data_revised([crash_threshold])
     dfs_x, dfs_y = data.get_dfs_xy_predict(months=months)
